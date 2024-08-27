@@ -10,7 +10,7 @@ export const userList = (userId: number, cursor = "") =>
 export const groupList = (groupId: number, cursor = "") =>
   LIST +
   `&groupId=${groupId}` +
-  (cursor !== "" ? `cursor=${cursor}` : "")
+  (cursor !== "" ? `&cursor=${cursor}` : "")
 export const publish = (title: string, description: string, groupId?: number) =>
   "https://www.roblox.com/ide/publish/uploadnewanimation" +
   "?assetTypeName=Animation" +

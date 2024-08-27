@@ -4,7 +4,8 @@
   "description": "Transfers Roblox animations from one owner to another",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "start": "npx tsc && node dist/index.js"
   },
   "bin": {
     "roblox-animation-transfer": "dist/index.js"
