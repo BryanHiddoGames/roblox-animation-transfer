@@ -16,7 +16,7 @@ export async function publishAnimation(
   description: string,
   data: Buffer,
   groupId?: number
-): Promise<string> {
+): Promise<number> {
   const response = await fetch(endpoints.publish(title, description, groupId), {
     body: data,
     method: "POST",
@@ -34,5 +34,14 @@ export async function publishAnimation(
     return Promise.reject(`${title}: ${response.statusText}`)
   }
 
-  return response.text()
+  const responseText = await response.text();
+  console.log(`Response for animation "${title}": ${responseText}`); // Log the response for debugging
+
+  // Since the response is the targetId as plain text, we can directly return it
+  const targetId = parseInt(responseText, 10);
+  if (!isNaN(targetId)) {
+    return targetId;
+  } else {
+    throw new Error(`Unexpected response format or missing targetId: ${responseText}`);
+  }
 }
